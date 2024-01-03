@@ -16,6 +16,7 @@ PACKAGES=(
     "lemurs"
     "inotify-tools"
     "tmux"
+    "kitty"
 
 )
 
