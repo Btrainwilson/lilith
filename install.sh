@@ -6,6 +6,17 @@ PACKAGES=(
     "curl"
     "htop"
     "fish"
+    "i3"
+    "rofi"
+    "wget"
+    "xclip"
+    "python"
+    "neofetch"
+    "make"
+    "lemurs"
+    "inotify-tools"
+    "tmux"
+
 )
 
 #!/bin/bash
