@@ -1,88 +1,65 @@
 #!/bin/bash
-# List of packages to be installed
-PACKAGES=(
-    "git"
-    "nvim"
-    "curl"
-    "htop"
-    "fish"
-    "i3"
-    "rofi"
-    "wget"
-    "xclip"
-    "python"
-    "neofetch"
-    "make"
-    "lemurs"
-    "inotify-tools"
-    "tmux"
-    "kitty"
+#
+INSTALLDIR=$(realpath ~/test)
+SCRIPTDIR=$(realpath .)
+YESMODE=false
 
-)
+run_install () {
+  local resp
+  if [ "$YESMODE" = false ]; then
+    read -p "Install $1? (y/n) "  resp
+  else
+    resp="y"
+  fi
 
-#!/bin/bash
-
-# Function to install packages for Debian/Ubuntu
-install_debian() {
-    echo "Detected Debian/Ubuntu system."
-    # Update package list
-    sudo apt-get update
-
-    # Install packages
-    for package in "${PACKAGES[@]}"
-    do
-        sudo apt-get install -y $package
-    done
+  if [ -z "$resp" ] || [ "$resp" = "y" ]; then
+    source "$2"
+  fi
 }
 
-# Function to install packages for Red Hat/CentOS
-install_redhat() {
-    echo "Detected Red Hat/CentOS system."
-    # Add your Red Hat/CentOS specific commands here
-    # sudo yum update
-    # sudo yum install -y package1 package2
+
+has_argument() {
+    [[ ("$1" == *=* && -n ${1#*=}) || ( ! -z "$2" && "$2" != -*)  ]];
 }
 
-# Function to install packages for Fedora
-install_fedora() {
-    echo "Detected Fedora system."
-    # Add your Fedora specific commands here
-    # sudo dnf update
-    # sudo dnf install -y package1 package2
+extract_argument() {
+  echo "${2:-${1#*=}}"
 }
 
-install_arch() {
-    echo "Detected Arch system."
-    # Add your Fedora specific commands here
-    # sudo dnf update
-    # sudo dnf install -y package1 package2
+# Function to display script usage
+usage() {
+ echo "Usage: $0 [OPTIONS]"
+ echo "Options:"
+ echo " -h, --help      Display this help message"
+ echo " -y, --yes       Skip all prompts and install everything"
 }
-# Function to show an error for unsupported distributions
-unsupported_distro() {
-    echo "Unsupported Linux distribution."
-}
-
-# Check the Linux distribution
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    case $ID in
-        debian|ubuntu)
-            install_debian
-            ;;
-        fedora)
-            install_fedora
-            ;;
-        rhel|centos)
-            install_redhat
-            ;;
-        arch)
-            install_arch
-            ;;
-        *)
-            unsupported_distro
-            ;;
+handle_options() {
+  while [ $# -gt 0 ]; do
+    case $1 in
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      -y | --yes)
+        YESMODE=true
+        ;;
+      *)
+        echo "Invalid option: $1" >&2
+        usage
+        exit 1
+        ;;
     esac
-else
-    echo "Cannot identify the Linux distribution."
+    shift
+  done
+}
+
+handle_options "$@"
+
+if [ ! -d $INSTALLDIR ]; then
+  echo "Directory $INSTALLDIR does not exist. Creating..."
+  mkdir -p $INSTALLDIR
 fi
 
+run_install "PARA Folders" "$SCRIPTDIR/install/para_folders.sh"
+run_install "Packages" "$SCRIPTDIR/install/install_packages.sh"
+run_install "Dotfiles" "$SCRIPTDIR/install/setup_dotfiles.sh"
