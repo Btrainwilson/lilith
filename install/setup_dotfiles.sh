@@ -32,7 +32,6 @@ for file in shell/*; do
         filename=$(basename -- "$file")
         ln -sf "$SCRIPTDIR/$file" "$INSTALLDIR/.$filename"
         echo "Added .$filename to $INSTALLDIR/.bashrc"
-        echo "source $INSTALLDIR/.$filename" >> "$INSTALLDIR/.bashrc"
     fi
 done
 

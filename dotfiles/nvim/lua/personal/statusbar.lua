@@ -1,10 +1,15 @@
-
 local function get_battery_status()
-  local handle = io.popen("acpi -b")
-  local result = handle:read("*a")
-  handle:close()
-  local battery = result:match(" (%d+%%)")
-  return battery or "N/A"
+  local battery = "N/A"
+  local job = vim.fn.jobstart("acpi -b", {
+    cwd = "/tmp",
+    on_exit = function(jobid, data, event)
+      vim.fn.chansend(jobid, "exit")
+    end,
+    on_stdout = function(jobid, data, event)
+      battery = data
+    end,
+  })
+  return battery
 end
 
 local function get_time()
@@ -27,17 +32,7 @@ local function status_line()
   local battery_status = "  %{v:lua.get_battery_status()}"
   local filemode = "%-2{v:lua.get_modeicons()} "
 
-
-  return string.format(
-    "%s%s%s%s%s%s%s",
-    mode,
-    filemode,
-    time,
-    right_align,
-    file_name,
-    file_type,
-    battery_status
-  )
+  return string.format("%s%s%s%s%s%s%s", mode, filemode, time, right_align, file_name, file_type, battery_status)
 end
 
 vim.opt.winbar = status_line()
@@ -45,4 +40,3 @@ vim.opt.winbar = status_line()
 -- The function must be global to be accessible in the statusline.
 _G.get_battery_status = get_battery_status
 _G.get_time = get_time
-
