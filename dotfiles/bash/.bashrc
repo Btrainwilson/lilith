@@ -102,17 +102,3 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.variables.sh
