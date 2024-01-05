@@ -1,0 +1,2 @@
+$SWALLPAPER="~/wallpapers"
+

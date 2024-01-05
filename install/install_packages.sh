@@ -18,6 +18,8 @@ PACKAGES=(
     "tmux"
     "kitty"
     "acpi"
+    "fzf"
+    "pipx"
 
 )
 
@@ -55,6 +57,7 @@ install_arch() {
     # Add your Fedora specific commands here
     # sudo dnf update
     # sudo dnf install -y package1 package2
+    sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 }
 # Function to show an error for unsupported distributions
 unsupported_distro() {

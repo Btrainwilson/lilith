@@ -1,7 +1,3 @@
-if [ "$TERM" = "xterm-kitty" ] 
-  #~/.config/local_scripts/kitty_rnd_wallpaper.sh ~/3\ Resources/Pictures/wallpapers/kitty/
-end
-
 
 # Created by `pipx` on 2023-07-22 19:11:42
 set PATH $PATH /home/kasner/.local/bin

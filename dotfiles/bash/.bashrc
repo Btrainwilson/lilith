@@ -100,20 +100,5 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/kasner/test/.aliases.sh
-source /home/blake/.aliases.sh
-source /home/blake/.aliases.sh
-source /home/blake/.aliases.sh

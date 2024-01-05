@@ -1,9 +1,15 @@
 local function get_battery_status()
-  local handle = io.popen("acpi -b")
-  local result = handle:read("*a")
-  handle:close()
-  local battery = result:match(" (%d+%%)")
-  return battery or "N/A"
+  local battery = "N/A"
+  local job = vim.fn.jobstart("acpi -b", {
+    cwd = "/tmp",
+    on_exit = function(jobid, data, event)
+      vim.fn.chansend(jobid, "exit")
+    end,
+    on_stdout = function(jobid, data, event)
+      battery = data
+    end,
+  })
+  return battery
 end
 
 local function get_time()
