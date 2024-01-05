@@ -63,3 +63,4 @@ fi
 run_install "PARA Folders" "$SCRIPTDIR/install/para_folders.sh"
 run_install "Packages" "$SCRIPTDIR/install/install_packages.sh"
 run_install "Dotfiles" "$SCRIPTDIR/install/setup_dotfiles.sh"
+run_install "Salt" "$SCRIPTDIR/install/setup_salt.sh"

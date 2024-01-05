@@ -114,3 +114,5 @@ source /home/kasner/test/.aliases.sh
 source /home/kasner/test/.aliases.sh
 source /home/kasner/test/.aliases.sh
 source /home/kasner/test/.aliases.sh
+source /home/kasner/test/.aliases.sh
+source /home/kasner/test/.variables.sh

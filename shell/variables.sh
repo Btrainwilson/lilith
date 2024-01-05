@@ -1,0 +1,4 @@
+
+SWP="$HOME/wallpaper"
+
+
