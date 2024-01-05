@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-INSTALLDIR=$(realpath ~/test)
+INSTALLDIR=$(realpath ~)
 SCRIPTDIR=$(realpath .)
 YESMODE=false
 

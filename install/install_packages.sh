@@ -17,6 +17,7 @@ PACKAGES=(
     "inotify-tools"
     "tmux"
     "kitty"
+    "acpi"
 
 )
 
