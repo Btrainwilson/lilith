@@ -18,6 +18,9 @@ ln -sf "$SCRIPTDIR/dotfiles/tmux/.tmux.conf" "$INSTALLDIR"
 echo "Installing bashrc to $INSTALLDIR/.bashrc"
 cp -sf "$SCRIPTDIR/dotfiles/bash/.bashrc" "$INSTALLDIR"
 
+echo "Installing kitty to $INSTALLDIR/kitty"
+cp -sf "$SCRIPTDIR/dotfiles/kitty" "$INSTALLDIR"
+
 
 for file in shell/*; do
 
